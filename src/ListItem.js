@@ -5,6 +5,7 @@ class ListItem extends Component {
     return (
       <li>
         {this.props.doThis}
+        <button onClick={this.props.deleteItem}>x</button>
       </li>
     );
   }

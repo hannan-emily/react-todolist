@@ -39,10 +39,25 @@ class MyList extends Component {
     })
   }
 
+  deleteItem = (e, index) => {
+    //create a copy
+    let toDoItemArrayCopy = Array.from(this.state.toDoItemArray)
+    //splice out this item from the copy array
+    toDoItemArrayCopy.splice(index, 1)
+    this.setState({
+      toDoItemArray: toDoItemArrayCopy
+    })
+  }
+
   render() {
 
     let jsxTodos = this.state.toDoItemArray.map((listItem, index) => {
-      return  <ListItem doThis={listItem} key={index} />
+      {/* you can pass in both data and functions using this method */}
+      return  (<ListItem
+        doThis={listItem}
+        key={index}
+        deleteItem={(e) => this.deleteItem(e, index)}
+        />)
     })
 
     return (
