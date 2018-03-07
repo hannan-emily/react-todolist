@@ -21,15 +21,19 @@ class MyList extends Component {
 
   addItem = (e) => {
     e.preventDefault()
-    //create a copy
-    let toDoItemArrayCopy = Array.from(this.state.toDoItemArray)
-    //push item to copy
-    toDoItemArrayCopy.push(this.state.currentItem)
-    //update master with copy
-    this.setState({
-      toDoItemArray: toDoItemArrayCopy,
-      currentItem: '',
-    })
+    //this is checking if currentItem (input field) is NOT an empty string
+    //if it DOES have a value, then proceed to adding item in
+    if (this.state.currentItem !== '') {
+      //create a copy
+      let toDoItemArrayCopy = Array.from(this.state.toDoItemArray)
+      //push item to copy
+      toDoItemArrayCopy.push(this.state.currentItem)
+      //update master with copy
+      this.setState({
+        toDoItemArray: toDoItemArrayCopy,
+        currentItem: '',
+      })
+    }
   }
 
   clearList = (e) => {
@@ -42,7 +46,7 @@ class MyList extends Component {
   deleteItem = (e, index) => {
     //create a copy
     let toDoItemArrayCopy = Array.from(this.state.toDoItemArray)
-    //splice out this item from the copy array
+    //splice out only 1 item at this index from the copy array
     toDoItemArrayCopy.splice(index, 1)
     this.setState({
       toDoItemArray: toDoItemArrayCopy
@@ -52,7 +56,7 @@ class MyList extends Component {
   render() {
 
     let jsxTodos = this.state.toDoItemArray.map((listItem, index) => {
-      {/* you can pass in both data and functions using this method */}
+      {/* you can pass in both data like doThis and functions like deleteItem using this method */}
       return  (<ListItem
         doThis={listItem}
         key={index}
