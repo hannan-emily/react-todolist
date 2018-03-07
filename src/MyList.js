@@ -21,9 +21,11 @@ class MyList extends Component {
 
   addItem = (e) => {
     e.preventDefault()
+    //create a copy
     let toDoItemArrayCopy = Array.from(this.state.toDoItemArray)
+    //push item to copy
     toDoItemArrayCopy.push(this.state.currentItem)
-
+    //update master with copy
     this.setState({
       toDoItemArray: toDoItemArrayCopy,
       currentItem: '',
