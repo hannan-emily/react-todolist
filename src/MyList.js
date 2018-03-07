@@ -34,6 +34,13 @@ class MyList extends Component {
         currentItem: '',
       })
     }
+    //this is focusing back on the text input
+    this.textInput.focus();
+  }
+
+  //this is focusing back on the text input
+  componentDidMount() {
+    this.textInput.focus();
   }
 
   clearList = (e) => {
@@ -70,7 +77,11 @@ class MyList extends Component {
         <ul>
             {jsxTodos}
         </ul>
-        <input type="text" value={this.state.currentItem} onChange={this.handleChange} />
+        <input
+          type="text"
+          ref={el => {this.textInput = el; }}
+          value={this.state.currentItem}
+          onChange={this.handleChange} />
         <br />
         <button onClick={this.addItem}>Add Item</button>
         <br />
